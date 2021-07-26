@@ -32,12 +32,17 @@ public class WebSecurityConfigration extends WebSecurityConfigurerAdapter {
         http
 
                 .authorizeRequests()
-                .antMatchers("/", "/signup" ).permitAll()
+                .antMatchers("/", "/signup","/login","/*.css","/*.js","/*.png","/*.jpg","/test").permitAll()
+                .antMatchers("/resources/**").permitAll()
+                .antMatchers("/*.css").permitAll()
+                .antMatchers("/*.js").permitAll()
+                .antMatchers("/*.png").permitAll()
+                .antMatchers("/*.jpg").permitAll()
                 .anyRequest().authenticated()//any other pages you have to be authenticated
                 .and()
                 .formLogin()
                 .loginPage("/login")
-                .defaultSuccessUrl("/profile")
+                .defaultSuccessUrl("/myprofile")
                 .permitAll()
                 .and()
                 .logout()

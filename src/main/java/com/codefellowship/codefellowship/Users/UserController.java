@@ -45,7 +45,7 @@ public class UserController {
     }
 
 
-    @GetMapping("/profile")
+    @GetMapping("/myprofile")
     public String getProfilePage(Model model){
         UserDetails userDetails= (UserDetails) SecurityContextHolder
                 .getContext()
@@ -54,13 +54,15 @@ public class UserController {
         Users users = userRepository.findUsersByUsername(userDetails.getUsername());
         model.addAttribute("posts",users.getPosts());
         model.addAttribute("username",userDetails.getUsername());
+        model.addAttribute("userInfo",userRepository.findAll());
         return "profile";
     }
 
 
 
-    @PostMapping("/profile")
+    @PostMapping("/myprofile")
     public RedirectView createPost(@RequestParam String body){
+        Date date = new Date();
         UserDetails userDetails= (UserDetails) SecurityContextHolder
                 .getContext()
                 .getAuthentication()
@@ -68,12 +70,16 @@ public class UserController {
         Users users = userRepository.findUsersByUsername(userDetails.getUsername());
         Post post= new Post(body);
         post.setUsers(users);
+        post.setCreatedAt(date);
         post= postRepository.save(post);
 
-        return new RedirectView("/profile");
+        return new RedirectView("/myprofile");
     }
 
-
+@GetMapping("/test")
+public String testTem(){
+        return "test";
+}
 
     @PostMapping("/signup")
     public RedirectView trySignUp(@RequestParam String firstname,
@@ -81,7 +87,7 @@ public class UserController {
                                   @RequestParam String username,
                                   @RequestParam String password,
                                   @RequestParam String location,
-                                  @RequestParam Date dateOfBirth,
+                                  @RequestParam String dateOfBirth,
                                   @RequestParam String bio){
         Users newUser = new Users(firstname,lastname,username,bCryptPasswordEncoder.encode(password),location,dateOfBirth,bio);
         newUser = userRepository.save(newUser);
@@ -90,7 +96,7 @@ public class UserController {
 
         SecurityContextHolder.getContext().setAuthentication(authentication);
 
-        return new RedirectView("/profile");
+        return new RedirectView("/myprofile");
     }
 
 

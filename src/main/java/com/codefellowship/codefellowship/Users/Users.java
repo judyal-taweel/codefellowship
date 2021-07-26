@@ -19,7 +19,7 @@ public class Users implements UserDetails {
 
     String firstname;
     String lastname;
-    Date dateOfBirth;
+    String dateOfBirth;
     String location;
     String bio;
 
@@ -42,15 +42,15 @@ public class Users implements UserDetails {
         this.location = location;
     }
 
-    public Date getDateOfBirth() {
+    public String getDateOfBirth() {
         return dateOfBirth;
     }
 
-    public void setDateOfBirth(Date dateOfBirth) {
+    public void setDateOfBirth(String dateOfBirth) {
         this.dateOfBirth = dateOfBirth;
     }
 
-    public Users(String firstname, String lastname,String username, String password  , String location,Date dateOfBirth, String bio) {
+    public Users(String firstname, String lastname,String username, String password  , String location,String dateOfBirth, String bio) {
         this.firstname = firstname;
         this.lastname = lastname;
         this.dateOfBirth = dateOfBirth;

@@ -50,6 +50,7 @@ public class Post {
         this.createdAt = createdAt;
     }
 
+
     public Post(String body, Date createdAt,Users users) {
         this.users=users;
         this.body = body;

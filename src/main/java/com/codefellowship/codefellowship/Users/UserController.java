@@ -19,7 +19,6 @@ import java.util.Optional;
 public class UserController {
 
 
-
     @Autowired
     UserRepository userRepository;
 
@@ -41,6 +40,8 @@ public class UserController {
 
     @GetMapping("/login")
     public String getLoginPge(){
+//        model.addAttribute("userInfo",userRepository.findAll());
+
         return "logIn";
     }
 
@@ -54,7 +55,8 @@ public class UserController {
         Users users = userRepository.findUsersByUsername(userDetails.getUsername());
         model.addAttribute("posts",users.getPosts());
         model.addAttribute("username",userDetails.getUsername());
-        model.addAttribute("userInfo",userRepository.findAll());
+
+        model.addAttribute("userInfo",users);
         return "profile";
     }
 

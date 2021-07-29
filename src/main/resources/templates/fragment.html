@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head th:fragment="head">
   <meta charset="UTF-8">
   <title>MOJU</title>
@@ -15,6 +15,9 @@
   <link rel="stylesheet" th:href="@{/footer.css}">
   <link th:href="@{/style.css}" rel="stylesheet"/>
   <link th:href="@{/test.css}" rel="stylesheet"/>
+  <link th:href="@{/home.css}" rel="stylesheet"/>
+  <link th:href="@{/body.css}" rel="stylesheet"/>
+  <link rel="stylesheet" th:href="@{https://www.w3schools.com/w3css/4/w3.css}">
 </head>
 <body>
 <header class="site-header" th:fragment="header">
@@ -63,6 +66,7 @@
       <div class="col item social"><a href="#"><i class="icon ion-social-facebook"></i></a><a href="#"><i class="icon ion-social-twitter"></i></a><a href="#"><i class="icon ion-social-snapchat"></i></a><a href="#"><i class="icon ion-social-instagram"></i></a></div>
     </div>
     <p class="copyright">Company Name © 2018</p>
+    <script th:src="@{/notes.js}"></script>
   </div>
 </footer>
 </body>

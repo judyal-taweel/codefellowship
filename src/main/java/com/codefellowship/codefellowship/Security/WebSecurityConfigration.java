@@ -38,6 +38,7 @@ public class WebSecurityConfigration extends WebSecurityConfigurerAdapter {
                 .antMatchers("/*.js").permitAll()
                 .antMatchers("/*.png").permitAll()
                 .antMatchers("/*.jpg").permitAll()
+                .antMatchers("/h2-console/**").permitAll()
                 .anyRequest().authenticated()//any other pages you have to be authenticated
                 .and()
                 .formLogin()
@@ -50,6 +51,8 @@ public class WebSecurityConfigration extends WebSecurityConfigurerAdapter {
                 .permitAll()
                 .and()
                 .exceptionHandling().accessDeniedPage("/access-denied");
+        http.csrf().disable();
+        http.headers().frameOptions().disable();
     }
     }
 

@@ -3,21 +3,18 @@
       xmlns:th="http://www.w3.org/1999/xhtml">
 <head th:replace="fragment :: head" xmlns:th="http://www.w3.org/1999/xhtml" >
 </head>
-<body style="background-image:url(https://cdn.wallpapersafari.com/82/43/dlLekw.jpg);background-position: right;background-repeat: no-repeat;background-size: cover;"><header th:replace="fragment :: header"></header>
-
+<body style="background-image:url(https://cdn.wallpapersafari.com/82/43/dlLekw.jpg);background-position: right;background-repeat: no-repeat;background-size: cover;">
+<header th:replace="fragment :: header"></header>
 <main>
-<!--<h1><span th:text="${username}"></span></h1>-->
-<section class="outerDiv">
-<img class="div1" src="https://i.pinimg.com/474x/65/25/a0/6525a08f1df98a2e3a545fe2ace4be47.jpg"/>
-
-
-<div th:each="userInfo : ${userInfo}">
-           <div class="div2"><span th:text="${userInfo.firstname}"></span><span th:text=" ' '+ ${userInfo.lastname}"></span></div>
+    <!--<h1><span th:text="${username}"></span></h1>-->
+    <section class="outerDiv">
+        <img class="div1" src="https://i.pinimg.com/474x/65/25/a0/6525a08f1df98a2e3a545fe2ace4be47.jpg"/>
+        <div th:each="userInfo : ${userInfo}">
+            <div class="div2"><span th:text="${userInfo.firstname}"></span><span th:text=" ' '+ ${userInfo.lastname}"></span></div>
             <div class="div3" th:text="${userInfo.dateOfBirth}"></div>
-    <div class="div4" th:text="${userInfo.location}"></div>
-</section>
-
-<!--            <div class="paragraph" th:text="${userInfo.bio}"></div>-->
+            <div class="div4" th:text="${userInfo.location}"></div>
+    </section>
+    <!--            <div class="paragraph" th:text="${userInfo.bio}"></div>-->
     <ul class="ul">
         <li class="li">
             <a class="a" href="#" contenteditable>
@@ -26,13 +23,11 @@
             </a>
         </li>
     </ul>
-        </div>
-
-
-<hr>
+    </div>
+    <hr>
+    <div th:text="${noOfFollowers}"> hhhhhhhhhhhhhhhhhhh</div>
     <div class="w3-container">
         <h2>Social Media</h2>
-
         <div class="w3-card-4" style="width:50%">
             <img src="https://th.bing.com/th/id/OIP.O_TNVFpWdQd3g2gEumoaywHaHa?w=179&h=180&c=7&o=5&pid=1.7" alt="Alps" style="width:100%">
             <div class="w3-container w3-center">
@@ -43,31 +38,26 @@
             </div>
         </div>
     </div>
-
-
-<form class="postForm" action="#" th:action="@{/myprofile}" th:object="${posts}" method="post" >
-    <label>Enter your post</label>
-    <textarea class="title" type="text" name="body" placeholder="" required ></textarea>
-
-    <input class="albumSubmit" type="submit" value="posts"/>
-</form>
-
-<div th:each="posts : ${posts}" class="w3-container">
-    <div class="w3-card-4" style="width:50%;">
-        <header class="w3-container w3-blue"> <h1 th:text="${username}" > </h1> </header>
-        <div class="w3-container">
-            <h2 th:text="${posts.body}"></h2></div>
-        <footer class="w3-container w3-blue">
-            <p th:text="${posts.createdAt}"></p></footer>
+    <form class="postForm" action="#" th:action="@{/myprofile}" th:object="${posts}" method="post" >
+        <label>Enter your post</label>
+        <textarea class="title" type="text" name="body" placeholder="" required ></textarea>
+        <input class="albumSubmit" type="submit" value="posts" style="width: 150%"/>
+    </form>
+    <div th:each="posts : ${posts}" class="w3-container">
+        <div class="w3-card-4" style="width:50%;">
+            <header class="w3-container w3-blue"> <h1 th:text="${username}" > </h1> </header>
+            <div class="w3-container">
+                <h2 th:text="${posts.body}"></h2></div>
+            <footer class="w3-container w3-blue">
+                <p th:text="${posts.createdAt}"></p></footer>
         </div>
     </div>
-</div>
+    </div>
+    <form th:action="@{/logout}" method="post">
+        <input type="submit" value="Log Out">
+    </form>
 
-<form th:action="@{/logout}" method="post">
-    <input type="submit" value="Log Out">
-</form>
 </main>
 <footer th:replace="fragment :: footer"></footer>
-
 </body>
 </html>
